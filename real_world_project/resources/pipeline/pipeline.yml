@@ -1,0 +1,15 @@
+resources:
+  pipelines:
+    pipeline_olist_retail:
+      name: Olist_Retail
+      libraries:
+        - glob:
+            include: ../../src/Retail/transformations/**
+      schema: bronze
+      continuous: false
+      development: true
+      photon: true
+      channel: CURRENT
+      catalog: dev_catalog
+      serverless: true
+      root_path: ../../src/Retail

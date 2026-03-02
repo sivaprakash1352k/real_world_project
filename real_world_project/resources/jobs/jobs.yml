@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    olist_job:
+      name: olist_job
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: ../../src/00_setup.ipynb
+            source: WORKSPACE
+        - task_key: bronze_to_gold
+          depends_on:
+            - task_key: setup
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.pipeline_olist_retail.id}
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
